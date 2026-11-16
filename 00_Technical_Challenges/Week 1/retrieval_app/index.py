@@ -9,6 +9,7 @@ from dataclasses import dataclass
 
 import numpy as np
 from openai import OpenAI
+from numpy.linalg import norm
 
 EMBEDDING_MODEL = "text-embedding-3-small"
 
@@ -46,22 +47,10 @@ class Hit:
 
 
 def embed_texts(texts: list[str]) -> np.ndarray:
-    """Turn a list of strings into a matrix of embedding vectors.
-
-    Args:
-        texts: the strings to embed. One API call can take many at once —
-            do NOT loop and call once per chunk.
-
-    Returns:
-        An array of shape (len(texts), 1536), one row per input string,
-        in the same order as `texts`.
-
-    Hint: `client().embeddings.create(input=texts, model=EMBEDDING_MODEL)`.
-    The response has a `.data` list; each item has an `.embedding`. Wrap the
-    result in np.array(). Print `response.usage` once — knowing what a corpus
-    costs to embed is the number that decides architecture at scale.
-    """
-    raise NotImplementedError("Write embed_texts() in retrieval_app/index.py")
+    response = client().embeddings.create(input=texts, model=EMBEDDING_MODEL)
+    print(f"Response usage: {response.usage}")
+    #Python "list comprehension" setup
+    return np.array([item.embedding for item in response.data])
 
 
 def cosine_similarity(a: np.ndarray, b: np.ndarray) -> float:
@@ -70,44 +59,24 @@ def cosine_similarity(a: np.ndarray, b: np.ndarray) -> float:
     Hint: the dot product, divided by the product of the two norms.
     NumPy has `np.dot` and `np.linalg.norm`.
     """
-    raise NotImplementedError("Write cosine_similarity() in retrieval_app/index.py")
+    return np.dot(a,b) / (norm(a) * norm(b))
 
 
 def build_index(chunks: list[str]) -> np.ndarray:
-    """Embed every chunk once, and return the matrix to search against.
-
-    Args:
-        chunks: from corpus.split_corpus().
-
-    Returns:
-        The embedding matrix. Row i corresponds to chunks[i] — that
-        correspondence is the only thing holding your citations together,
-        so do not sort or filter one without the other.
-
-    Hint: this is mostly a call to embed_texts(). Notice that it happens once
-    per process, and that a fresh process has no memory of the last one.
-    """
-    raise NotImplementedError("Write build_index() in retrieval_app/index.py")
+    matrix = embed_texts(chunks)
+    return np.array(matrix)
 
 
 def search(query: str, chunks: list[str], matrix: np.ndarray, k: int = 3) -> list[Hit]:
-    """Find the k chunks most similar to the query.
+    embedded_query = embed_texts([query])[0]
+    score_threshold: float = 0.3
+    hits: list[Hit] = [] 
 
-    Args:
-        query: the user's question, as typed.
-        chunks: the chunk texts.
-        matrix: the embedding matrix from build_index().
-        k: how many hits to return.
+    for i, (chunk, element) in enumerate(zip(chunks, matrix)):
+        score = cosine_similarity(embedded_query, element)
+        if score > score_threshold:
+            # chunk_id is the position in the matrix
+            hits.append(Hit(chunk_id=i, text=chunk, score=score))
 
-    Returns:
-        Up to k Hits, most similar first.
+    return sorted(hits, key=lambda h: h.score, reverse=True)[:k]
 
-    Hints:
-      - Embed the query with the SAME model you built the index with. A query
-        embedded by a different model is not comparable, and the failure is
-        silent — you get plausible-looking nonsense, not an error.
-      - Score the query against every row, then sort.
-      - Read the signature again: it says "up to k". Nothing here forces you to
-        return exactly k. That freedom is the whole of Step 4's threshold option.
-    """
-    raise NotImplementedError("Write search() in retrieval_app/index.py")
