@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="2060" viewBox="0 0 1700 2060" font-family="Helvetica, Arial, sans-serif" fill="none" stroke="#1a1a1a">
+  <defs>
+    <marker id="arrow" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="14" markerHeight="14" orient="auto-start-reverse">
+      <path d="M1 1 L11 6 L1 11" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+    </marker>
+    <g id="doc">
+      <path d="M0 0 h22 l10 10 v32 h-32 z M22 0 v10 h10" stroke-width="2" fill="none"/>
+    </g>
+  </defs>
+
+  <rect width="1700" height="2060" fill="#fafafa" stroke="none"/>
+
+  <!-- ================= INGESTION ================= -->
+  <rect x="520" y="90" width="1090" height="475" rx="10" stroke-width="2"/>
+  <text x="560" y="140" font-size="26" fill="#1a1a1a" stroke="none">Ingestion (runs on every command)</text>
+
+  <rect x="550" y="255" width="210" height="210" rx="8" stroke-width="2"/>
+  <use href="#doc" x="639" y="292"/>
+  <text x="655" y="380" font-size="21" text-anchor="middle" fill="#1a1a1a" stroke="none">HealthWellness</text>
+  <text x="655" y="406" font-size="21" text-anchor="middle" fill="#1a1a1a" stroke="none">Guide.txt</text>
+  <text x="655" y="440" font-size="17" text-anchor="middle" fill="#555" stroke="none">16,206 characters</text>
+
+  <line x1="765" y1="360" x2="862" y2="360" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="813" y="345" font-size="16" text-anchor="middle" fill="#555" stroke="none">str</text>
+
+  <rect x="865" y="175" width="405" height="350" rx="8" stroke-width="2"/>
+  <use href="#doc" x="905" y="198" transform="translate(0,0) scale(1)"/>
+  <text x="950" y="226" font-size="23" fill="#1a1a1a" stroke="none">Chunks (21)</text>
+  <rect x="905" y="270" width="92" height="82" rx="8" stroke-width="2"/><use href="#doc" x="935" y="290"/>
+  <rect x="1022" y="270" width="92" height="82" rx="8" stroke-width="2"/><use href="#doc" x="1052" y="290"/>
+  <rect x="1139" y="270" width="92" height="82" rx="8" stroke-width="2"/><use href="#doc" x="1169" y="290"/>
+  <rect x="905" y="375" width="92" height="82" rx="8" stroke-width="2"/><use href="#doc" x="935" y="395"/>
+  <rect x="1022" y="375" width="92" height="82" rx="8" stroke-width="2"/><use href="#doc" x="1052" y="395"/>
+  <rect x="1139" y="375" width="92" height="82" rx="8" stroke-width="2"/><use href="#doc" x="1169" y="395"/>
+  <text x="1067" y="500" font-size="17" text-anchor="middle" fill="#555" stroke="none">up to 1000 chars · 200 overlap</text>
+
+  <line x1="1272" y1="360" x2="1372" y2="360" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="1322" y="345" font-size="16" text-anchor="middle" fill="#555" stroke="none">list[str]</text>
+
+  <rect x="1375" y="255" width="210" height="210" rx="8" stroke-width="2"/>
+  <use href="#doc" x="1464" y="285"/>
+  <text x="1480" y="370" font-size="21" text-anchor="middle" fill="#1a1a1a" stroke="none">Embedding</text>
+  <text x="1480" y="396" font-size="21" text-anchor="middle" fill="#1a1a1a" stroke="none">Model</text>
+  <text x="1480" y="424" font-size="15" text-anchor="middle" fill="#555" stroke="none">text-embedding-3-small</text>
+  <text x="1480" y="450" font-size="16" text-anchor="middle" fill="#b8860b" stroke="none">($) OpenAI call</text>
+
+  <!-- ingestion -> retrieval -->
+  <path d="M1480 465 V580 Q1480 595 1465 595 H1082 Q1067 595 1067 610 V705" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="1280" y="585" font-size="16" text-anchor="middle" fill="#555" stroke="none">np.ndarray (21, 1536)</text>
+
+  <!-- ================= USER ================= -->
+  <rect x="90" y="705" width="375" height="415" rx="10" stroke-width="2"/>
+  <circle cx="145" cy="742" r="8" stroke-width="2"/>
+  <path d="M131 764 q14 -16 28 0" stroke-width="2"/>
+  <text x="170" y="755" font-size="24" fill="#1a1a1a" stroke="none">User</text>
+  <rect x="135" y="800" width="290" height="250" rx="8" stroke-width="2"/>
+  <text x="157" y="880" font-size="22" fill="#1a1a1a" stroke="none">Query: How many</text>
+  <text x="157" y="910" font-size="22" fill="#1a1a1a" stroke="none">hours of sleep do</text>
+  <text x="157" y="940" font-size="22" fill="#1a1a1a" stroke="none">adults need?</text>
+
+  <!-- ================= RETRIEVAL ================= -->
+  <rect x="520" y="620" width="1090" height="550" rx="10" stroke-width="2"/>
+  <text x="560" y="670" font-size="26" fill="#1a1a1a" stroke="none">Retrieval</text>
+
+  <line x1="470" y1="918" x2="580" y2="918" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="492" y="903" font-size="16" text-anchor="middle" fill="#555" stroke="none">str</text>
+
+  <rect x="585" y="815" width="210" height="205" rx="8" stroke-width="2"/>
+  <rect x="674" y="855" width="34" height="26" rx="4" stroke-width="2"/>
+  <text x="690" y="920" font-size="21" text-anchor="middle" fill="#1a1a1a" stroke="none">Embedding</text>
+  <text x="690" y="946" font-size="21" text-anchor="middle" fill="#1a1a1a" stroke="none">Model (query)</text>
+  <text x="690" y="985" font-size="16" text-anchor="middle" fill="#b8860b" stroke="none">($) OpenAI call</text>
+
+  <line x1="800" y1="918" x2="895" y2="918" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="848" y="903" font-size="16" text-anchor="middle" fill="#555" stroke="none">(1536,)</text>
+
+  <rect x="900" y="710" width="335" height="395" rx="8" stroke-width="2"/>
+  <ellipse cx="958" cy="745" rx="11" ry="5" stroke-width="2"/>
+  <path d="M947 745 v16 a11 5 0 0 0 22 0 v-16" stroke-width="2"/>
+  <text x="980" y="760" font-size="23" fill="#1a1a1a" stroke="none">Index (in memory)</text>
+  <rect x="940" y="795" width="255" height="125" rx="8" stroke-width="2"/>
+  <text x="1067" y="850" font-size="21" text-anchor="middle" fill="#1a1a1a" stroke="none">matrix 21 × 1536</text>
+  <text x="1067" y="880" font-size="17" text-anchor="middle" fill="#555" stroke="none">row i = chunk i</text>
+  <rect x="940" y="940" width="255" height="125" rx="8" stroke-width="2"/>
+  <text x="1067" y="995" font-size="21" text-anchor="middle" fill="#1a1a1a" stroke="none">cosine similarity</text>
+  <text x="1067" y="1025" font-size="17" text-anchor="middle" fill="#555" stroke="none">query vs every row</text>
+
+  <line x1="1238" y1="918" x2="1338" y2="918" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="1288" y="903" font-size="16" text-anchor="middle" fill="#555" stroke="none">21 scores</text>
+
+  <rect x="1340" y="815" width="210" height="205" rx="8" stroke-width="2" fill="#fff3cd" stroke="#b8860b"/>
+  <text x="1445" y="870" font-size="21" text-anchor="middle" fill="#1a1a1a" stroke="none">Score floor</text>
+  <text x="1445" y="900" font-size="21" text-anchor="middle" fill="#1a1a1a" stroke="none">&gt; 0.3</text>
+  <text x="1445" y="935" font-size="18" text-anchor="middle" fill="#1a1a1a" stroke="none">then top k = 3</text>
+  <text x="1445" y="985" font-size="16" text-anchor="middle" fill="#b8860b" stroke="none">Step 4 change</text>
+
+  <!-- retrieval -> augmentation -->
+  <path d="M1445 1020 V1355 Q1445 1370 1430 1370 H1405" stroke-width="1.8"/>
+  <text x="1460" y="1200" font-size="16" fill="#555" stroke="none">list[Hit]</text>
+
+  <!-- ================= GENERATION ================= -->
+  <rect x="520" y="1225" width="515" height="250" rx="10" stroke-width="2"/>
+  <text x="560" y="1275" font-size="26" fill="#1a1a1a" stroke="none">Generation</text>
+  <rect x="655" y="1310" width="250" height="120" rx="8" stroke-width="2"/>
+  <circle cx="712" cy="1355" r="5" stroke-width="2"/>
+  <circle cx="735" cy="1340" r="5" stroke-width="2"/>
+  <circle cx="732" cy="1375" r="5" stroke-width="2"/>
+  <path d="M717 1352 L730 1343 M716 1359 L728 1371 M735 1345 L733 1370" stroke-width="2"/>
+  <text x="760" y="1365" font-size="23" fill="#1a1a1a" stroke="none">LLM</text>
+  <text x="780" y="1398" font-size="16" text-anchor="middle" fill="#555" stroke="none">gpt-5-nano · minimal</text>
+  <text x="780" y="1420" font-size="16" text-anchor="middle" fill="#b8860b" stroke="none">($) OpenAI call</text>
+
+  <!-- ================= AUGMENTATION ================= -->
+  <rect x="1095" y="1225" width="515" height="250" rx="10" stroke-width="2"/>
+  <text x="1135" y="1275" font-size="26" fill="#1a1a1a" stroke="none">Augmentation</text>
+  <text x="1290" y="1377" font-size="21" text-anchor="middle" fill="#1a1a1a" stroke="none">Query + Context</text>
+  <text x="1290" y="1410" font-size="16" text-anchor="middle" fill="#555" stroke="none">system: rules · user: &lt;source id&gt; tags + question</text>
+  <text x="1290" y="1445" font-size="16" text-anchor="middle" fill="#555" stroke="none">no hits → decline, no LLM call</text>
+
+  <line x1="1180" y1="1370" x2="910" y2="1370" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="1065" y="1355" font-size="16" text-anchor="middle" fill="#555" stroke="none">messages</text>
+
+  <!-- generation -> output -->
+  <line x1="780" y1="1435" x2="780" y2="1540" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="795" y="1500" font-size="16" fill="#555" stroke="none">str</text>
+
+  <!-- ================= OUTPUT ================= -->
+  <rect x="520" y="1545" width="1090" height="380" rx="10" stroke-width="2"/>
+  <text x="553" y="1620" font-size="22" fill="#1a1a1a" stroke="none">OUTPUT: Adults typically need 7-9 hours of sleep per night. [6]</text>
+  <text x="553" y="1690" font-size="22" fill="#1a1a1a" stroke="none">Sources:</text>
+  <text x="575" y="1730" font-size="20" fill="#1a1a1a" stroke="none">[chunk 6] on is to drink 8 glasses (64 ounces) of water daily... (score 0.461)</text>
+  <text x="575" y="1765" font-size="20" fill="#1a1a1a" stroke="none">[chunk 7] t. Sleep occurs in cycles of about 90 minutes, alternating... (score 0.409)</text>
+  <text x="575" y="1800" font-size="20" fill="#1a1a1a" stroke="none">[chunk 8] Avoid caffeine after 2 PM - Exercise regularly, but not too... (score 0.385)</text>
+  <text x="553" y="1870" font-size="18" fill="#555" stroke="none">Every answer cites the chunk_id it came from.</text>
+
+  <!-- legend -->
+  <text x="90" y="1995" font-size="18" fill="#555" stroke="none">($) = paid OpenAI call · yellow = Step 4 change · arrow labels = data type passed between stages</text>
+</svg>
